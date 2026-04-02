@@ -1,6 +1,6 @@
 # Sorting Algorithms Performance Analysis
 
-**Student Name:** Kfir Golring
+**Student Name:** Kfir Goldring
 
 This project implements and compares the performance of various sorting algorithms across different array sizes and data conditions.
 
@@ -49,14 +49,8 @@ python run_experiments.py -a <algorithm_ids> -s <array_sizes> -e <experiment_typ
 **Example 1**: Compare Insertion, Merge, and Quick Sort on arrays of sizes 100, 500, and 3000 with random data, 20 repetitions:
 ```bash
 python run_experiments.py -a 3 4 5 -s 100 500 3000 -e 0 -r 20
-
-Result:
-![img.png](img.png)
-
-In the figure we can see  that inseration sort is a lot slower than merge sort and quick sort , which appear to have similar running times. 
-This coincides with the theoretical complexity of these algorithms- 0(n^2) for insertion sort, o (nlogn) for merge/quick sort. 
-```
-
+ 
+ 
 **Example 2**: Compare all algorithms on nearly-sorted data (5% noise):
 ```bash
 python run_experiments.py -a 1 2 3 4 5 -s 100 500 1000 5000 -e 1 -r 10
@@ -103,11 +97,11 @@ Tests algorithms on nearly-sorted arrays with controlled amounts of disorder:
 
 This experiment compares the performance of all five sorting algorithms on randomly generated arrays of varying sizes. The results clearly demonstrate the difference between O(n²) and O(n log n) algorithms:
 
-- **O(n²) algorithms (Bubble, Selection, Insertion):** Show quadratic growth in runtime as array size increases. These algorithms become impractical for large datasets (>10,000 elements), with execution times growing rapidly.
+- **O(n²) algorithms (Bubble, Selection, Insertion):** Show quadratic growth in runtime as array size increases.  
 
 - **O(n log n) algorithms (Merge, Quick):** Display significantly better scalability, maintaining reasonable performance even on large arrays. These algorithms show the characteristic logarithmic growth pattern, making them suitable for production use.
 
-- **Key Observation:** The performance gap between O(n²) and O(n log n) algorithms widens dramatically as array size increases, validating theoretical complexity analysis.
+- As expceted , the performance difference between o(n²) and o(n) widens dramatically as array size increases. 
 
 ---
 
@@ -135,7 +129,7 @@ The key difference lies in how algorithms exploit existing order:
 - **Adaptive algorithms** (Insertion, Bubble) can skip unnecessary operations when data is partially sorted
 - **Non-adaptive algorithms** (Selection) perform the same operations regardless of input order
 - **Divide-and-conquer algorithms** (Merge, Quick) partition data systematically without considering initial order
-
+ 
 This demonstrates why insertion sort is often preferred for small or nearly-sorted datasets despite its O(n²) worst-case complexity.
 
 ---
