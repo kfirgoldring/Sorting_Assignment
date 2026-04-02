@@ -1,10 +1,11 @@
+from typing import List, Dict, Callable
 import numpy as np
 import matplotlib.pyplot as plt
 import time
 import argparse
 from sorting_algorithms import insertion_sort, merge_sort, quick_sort, bubble_sort, selection_sort
 
-def comparative_experiment(array_sizes: list, num_repetitions: int, algorithms: dict) -> None:
+def comparative_experiment(array_sizes: List[int], num_repetitions: int, algorithms: Dict[str, Callable]) -> None:
     """
     Compare sorting algorithm performance across different array sizes.
 
@@ -29,8 +30,9 @@ def comparative_experiment(array_sizes: list, num_repetitions: int, algorithms: 
 
             # Time each algorithm
             for name, func in algorithms.items():
+                test_array_copy = test_array.copy()  # Fresh copy for each algorithm
                 start = time.perf_counter()
-                func(test_array)
+                func(test_array_copy)
                 end = time.perf_counter()
                 algo_times[name].append(end - start)  # Time in seconds
 
@@ -92,8 +94,9 @@ def noise_experiment(array_sizes: list, noise_percentage: float, num_repetitions
 
             # Time each algorithm
             for name, func in algorithms.items():
+                test_array_copy = test_array.copy()  # Fresh copy for each algorithm
                 start = time.perf_counter()
-                func(test_array)
+                func(test_array_copy)
                 end = time.perf_counter()
                 algo_times[name].append(end - start)  # Time in seconds
 
@@ -145,6 +148,21 @@ if __name__ == "__main__":
                         help='Number of repetitions for each test')
 
     args = parser.parse_args()
+
+    # Validate array sizes
+    if any(size <= 0 for size in args.sizes):
+        print("Error: Array sizes must be positive integers")
+        exit(1)
+
+    # Validate repetitions
+    if args.repetitions <= 0:
+        print("Error: Number of repetitions must be a positive integer")
+        exit(1)
+
+    # Validate experiment type
+    if args.experiment not in [0, 1, 2]:
+        print(f"Error: Invalid experiment type {args.experiment}. Must be 0, 1, or 2")
+        exit(1)
 
     # Build selected algorithms dictionary
     selected_algorithms = {}
