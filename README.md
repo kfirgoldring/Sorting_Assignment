@@ -8,6 +8,10 @@ This project implements multiple sorting algorithms and benchmarks runtime behav
 - **Merge Sort**
 - **Quick Sort**
 
+## Goals
+
+- Compare practical runtime trends with theoretical complexity.
+- Analyze how input characteristics (random vs. nearly-sorted) affect performance of different sorting algorithms.
 ## Installation
 
 Install required dependencies:
@@ -86,7 +90,7 @@ Tests algorithms on nearly-sorted arrays with controlled disorder:
 ## Experimental Results  
 
 ### Result 1: Comparative Experiment (Random Data)
-Array sizes: 100, 200, 300, 500, 1000, 2000, 3000
+Array sizes: 100, 200, 300, 500, 1000, 2000, 3000. 
 Number of repetitions:20
 
 ![result1.png](result1.png)
@@ -112,7 +116,7 @@ Number of repetitions:20
 
 ### Result 2: Nearly-Sorted Data Experiment
 **5% Noise:**
-Array sizes: 100, 200, 300, 500, 1000, 2000, 3000
+Array sizes: 100, 200, 300, 500, 1000, 2000, 3000.
 Number of repetitions:20
 
 ![result2.png](result2.png)
@@ -138,7 +142,4 @@ Comparing the results of the three algorithms,with the first experiment on rando
 
 Near-sorted inputs reduce the practical gap between insertion sort and the `O(n log n)` algorithms at small sizes, but merge and quick sort still provide stronger scalability as size grows.
 
-## Goals
 
-- Compare practical runtime trends with theoretical complexity.
-- Show when insertion sort is advantageous (nearly-sorted/smaller inputs) versus when merge and quick sort are preferable (larger inputs).
