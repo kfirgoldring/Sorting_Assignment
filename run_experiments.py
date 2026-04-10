@@ -44,12 +44,21 @@ def comparative_experiment(array_sizes: List[int], num_repetitions: int, algorit
             results[name]['stds'].append(std_time)
             print(f"  {name}: {mean_time:.4f} ± {std_time:.4f} s")
 
-    # Create plot
+    # Create plot with runtime variability shown as error bars (mean ± std).
     plt.figure(figsize=(10, 6))
     markers = ['o', 's', '^', 'd', 'v']
     for idx, (name, data) in enumerate(results.items()):
         marker = markers[idx % len(markers)]
-        plt.plot(array_sizes, data['means'], marker=marker, label=name, linewidth=2)
+        plt.errorbar(
+            array_sizes,
+            data['means'],
+            yerr=data['stds'],
+            marker=marker,
+            label=name,
+            linewidth=2,
+            capsize=4,
+            elinewidth=1
+        )
 
     plt.xlabel('Array Size')
     plt.ylabel('Runtime (s)')
@@ -108,12 +117,21 @@ def noise_experiment(array_sizes: list, noise_percentage: float, num_repetitions
             results[name]['stds'].append(std_time)
             print(f"  {name}: {mean_time:.4f} ± {std_time:.4f} s")
 
-    # Create plot
+    # Create plot with runtime variability shown as error bars (mean ± std).
     plt.figure(figsize=(10, 6))
     markers = ['o', 's', '^', 'd', 'v']
     for idx, (name, data) in enumerate(results.items()):
         marker = markers[idx % len(markers)]
-        plt.plot(array_sizes, data['means'], marker=marker, label=name, linewidth=2)
+        plt.errorbar(
+            array_sizes,
+            data['means'],
+            yerr=data['stds'],
+            marker=marker,
+            label=name,
+            linewidth=2,
+            capsize=4,
+            elinewidth=1
+        )
 
     plt.xlabel('Array Size')
     plt.ylabel('Runtime (s)')
