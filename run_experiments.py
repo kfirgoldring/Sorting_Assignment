@@ -62,7 +62,7 @@ def comparative_experiment(array_sizes: List[int], num_repetitions: int, algorit
 
     plt.xlabel('Array Size')
     plt.ylabel('Runtime (s)')
-    plt.title('Runtime Comparison')
+    plt.title('Runtime Comparison with Random Data')
     plt.legend()
     plt.grid(True, alpha=0.3)
 
@@ -161,7 +161,7 @@ if __name__ == "__main__":
     parser.add_argument('-s', '--sizes', type=int, nargs='+', required=True,
                         help='Array sizes to test')
     parser.add_argument('-e', '--experiment', type=int, required=True,
-                        help='Experiment type: 0=Comparative (random), 1=5%% noise, 2=20%% noise')
+                        help='Experiment type: 1=5%% noise, 2=20%% noise')
     parser.add_argument('-r', '--repetitions', type=int, required=True,
                         help='Number of repetitions for each test')
 
@@ -178,8 +178,8 @@ if __name__ == "__main__":
         exit(1)
 
     # Validate experiment type
-    if args.experiment not in [0, 1, 2]:
-        print(f"Error: Invalid experiment type {args.experiment}. Must be 0, 1, or 2")
+    if args.experiment not in [1, 2]:
+        print(f"Error: Invalid experiment type {args.experiment}. Must be 1 or 2")
         exit(1)
 
     # Build selected algorithms dictionary
@@ -196,15 +196,13 @@ if __name__ == "__main__":
         exit(1)
 
     # Run the appropriate experiment
-    if args.experiment == 0:
+    if args.experiment == 1:
         print("Running comparative experiment with random data...")
         comparative_experiment(args.sizes, args.repetitions, selected_algorithms)
-    elif args.experiment == 1:
-        print("Running noise experiment with 5% noise...")
+        print("\nRunning noise experiment with 5% noise...")
         noise_experiment(args.sizes, 0.05, args.repetitions, selected_algorithms)
     elif args.experiment == 2:
-        print("Running noise experiment with 20% noise...")
+        print("Running comparative experiment with random data...")
+        comparative_experiment(args.sizes, args.repetitions, selected_algorithms)
+        print("\nRunning noise experiment with 20% noise...")
         noise_experiment(args.sizes, 0.20, args.repetitions, selected_algorithms)
-    else:
-        print(f"Error: Unknown experiment type {args.experiment}")
-        exit(1)

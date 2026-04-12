@@ -36,12 +36,11 @@ python run_experiments.py -a <algorithm_ids> -s <array_sizes> -e <experiment_typ
   - `5` = Quick Sort
 - `-s, --sizes`: Array sizes to test (space-separated integers)
 - `-e, --experiment`: Experiment type
-  - `0` = Random data (unsorted)
   - `1` = Nearly sorted with 5% noise
   - `2` = Nearly sorted with 20% noise
 - `-r, --repetitions`: Number of repetitions for each test . results are averaged to reduce variability. 
 This number has to be an integer!
-
+In any case, wheather 5 or 20 percent noise is used, the program will show the results both for the nearly sorted arrays and for  random data arrays, with the same number of repetitions and the same array sizes.
 ###Running Examples  
 
 Compare **Insertion, Merge, and Quick Sort** on random data:
@@ -51,7 +50,7 @@ python run_experiments.py -a 3 4 5 -s 100 500 3000 -e 0 -r 20
 
 ```
 
-Compare **Insertion, Merge, and Quick Sort** on nearly-sorted data:
+Compare **Insertion, Merge, and Quick Sort** on nearly-sorted(5 percent noise)  and random data:
 ```bash
 python run_experiments.py -a 3 4 5 -s 100 500 1000 5000 -e 1 -r 10
 python run_experiments.py -a 3 4 5 -s 100 500 1000 5000 -e 2 -r 10
@@ -63,8 +62,8 @@ The program generates:
 
 - Console output with mean runtime ± standard deviation for each algorithm at each array size
 - A plot saved as:
-  - `result1.png` for experiment type `0`
-  - `result2.png` for experiment types `1` and `2`
+  - `result1.png` for random data arrays
+  - `result2.png` for nearly sorted arrays  with 5/20 percent noise
 
 ## Project Structure
 
@@ -78,7 +77,7 @@ The program generates:
 
 ## Experiments
 
-### Comparative Experiment (Type 0)
+### Comparative Experiment  
 Tests algorithms on randomly generated arrays.
 
 ### Noise Experiments (Types 1 and 2)
